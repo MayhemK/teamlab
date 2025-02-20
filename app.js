@@ -73,3 +73,4 @@ function checkHeroHealth() {
 
 setInterval(bossAttack, 1000)
 // setInterval(checkForLoss, 1000)
+hi  
