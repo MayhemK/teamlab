@@ -1,17 +1,20 @@
 // SECTION VARIABLES
-
+let gold = 0
+let potion = 3
 const heroes = [
   {
     name: 'Strongman',
     type: 'dwarf',
     damage: 5,
-    health: 100
+    health: 100,
+    maxHealth: 100
   },
   {
     name: 'Heavy Hitter',
     type: 'elf',
     damage: 10,
-    health: 50
+    health: 50,
+    maxHealth: 50
   }
 ]
 
@@ -33,10 +36,15 @@ function attackBoss() {
   heroes.forEach(hero => {
     //... Calculate total damage
     totalDamage += hero.damage
+    
   })
-  //... Reduce the boss health and update the boss's health on the page
+  
   boss.health -= totalDamage
+  if (boss.health < 1) {
+    boss.health = 0
+  }
   console.log("after hit boss has " + boss.health + " health");
+  levelUpBoss()
 }
 
 function bossAttack() {
@@ -71,6 +79,38 @@ function checkHeroHealth() {
 
 // !SECTION LOGIC
 
-setInterval(bossAttack, 1000)
+// setInterval(bossAttack, 1000)
 // setInterval(checkForLoss, 1000)
-hi  
+
+
+function levelUpBoss(){
+  if (boss.health <= 0) {
+    boss.level++
+    boss.health = 100
+     
+    console.log(boss);
+    awardHeroes()
+  }
+}
+
+function awardHeroes(){
+  const heroGold = boss.level
+   gold += heroGold
+   console.log(gold);
+  
+}
+
+function healHero(heroName){
+  
+  if (gold >= potion) {
+    const heroToHeal = heroes.find(hero => hero.name === heroName)
+    gold -= potion
+    heroToHeal.health = heroToHeal.maxHealth
+    console.log(heroToHeal);
+    
+
+
+    
+
+  }
+}
