@@ -21,7 +21,7 @@ const heroes = [
 const boss = {
   health: 100,
   maxHealth: 100,
-  damage: 25,
+  damage: 10,
   level: 1
 }
 
