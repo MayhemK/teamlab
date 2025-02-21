@@ -1,5 +1,5 @@
 // SECTION VARIABLES
-let gold = 0
+let gold = 45
 let potion = 3
 const heroes = [
   {
@@ -36,9 +36,9 @@ function attackBoss() {
   heroes.forEach(hero => {
     //... Calculate total damage
     totalDamage += hero.damage
-    
+
   })
-  
+
   boss.health -= totalDamage
   if (boss.health < 1) {
     boss.health = 0
@@ -79,38 +79,59 @@ function checkHeroHealth() {
 
 // !SECTION LOGIC
 
-// setInterval(bossAttack, 1000)
+// setInterval(bossAttack, 5000)
 // setInterval(checkForLoss, 1000)
 
 
-function levelUpBoss(){
+function levelUpBoss() {
   if (boss.health <= 0) {
     boss.level++
     boss.health = 100
-     
+
     console.log(boss);
     awardHeroes()
   }
 }
 
-function awardHeroes(){
+function awardHeroes() {
   const heroGold = boss.level
-   gold += heroGold
-   console.log(gold);
-  
+  gold += heroGold
+  console.log(gold);
+  drawGold()
+
 }
 
-function healHero(heroName){
-  
+function healHero(heroName) {
+
   if (gold >= potion) {
     const heroToHeal = heroes.find(hero => hero.name === heroName)
     gold -= potion
     heroToHeal.health = heroToHeal.maxHealth
     console.log(heroToHeal);
-    
-
-
-    
 
   }
+  drawGold()
 }
+
+
+function drawGold() {
+  const goldElem = document.getElementById('wallet')
+  goldElem.innerText = `Gold: ${gold}`
+}
+function drawHealth() {
+  const healthElem = document.getElementById('strongman')
+  healthElem.innerText = `Health: ${heroes[0].health}`
+
+}
+function drawHealth2() {
+  const healthElem = document.getElementById('hh')
+  healthElem.innerText = `Health: ${heroes[1].health}`
+
+}
+// function drawHealth() {
+//   const hero = heroes.forEach(hero => {})
+//   const healthElem = document.getElementById('heroTwoHealth')
+//   healthElem.innerText = `Health: ${hero}`
+// }
+
+drawGold()
