@@ -56,6 +56,9 @@ function bossAttack() {
     checkHeroHealth()
     console.log(hero.name + " has " + hero.health + "health after the hit");
   })
+  drawHealth()
+  drawHealth2()
+  checkForLoss()
   // Update heroes' health on the page
 }
 
@@ -79,7 +82,7 @@ function checkHeroHealth() {
 
 // !SECTION LOGIC
 
-// setInterval(bossAttack, 5000)
+setInterval(bossAttack, 5000)
 // setInterval(checkForLoss, 1000)
 
 
@@ -111,6 +114,8 @@ function healHero(heroName) {
 
   }
   drawGold()
+  drawHealth()
+  drawHealth2()
 }
 
 
